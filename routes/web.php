@@ -8,7 +8,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AlbumCategoryController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ImageController;
-use App\Http\Controllers\DropzoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,46 +41,37 @@ Route::get('/Contact', function () {
 
 Route::get('/news-list', [HomeController::class, 'newsList'])->name('news-list');
 
-Route::get('/news-detail/{id}', [HomeController::class, 'newsDetail'])->name('news-detail');
+Route::get('/news-detail/{id}', [HomeController::class, 'newsDetail'])->whereNumber('id')->name('news-detail');
 
-Route::get('/archives/{year}', [HomeController::class, 'getArchiveNews'])->name('news-detail');
+Route::get('/archives/{year}', [HomeController::class, 'getArchiveNews'])->whereNumber('year')->name('news-archive');
 
 Route::get('/gallery-list', [HomeController::class, 'galleryList'])->name('gallery-list');
 
-Route::get('/gallery-detail/{id}', [HomeController::class, 'galleryDetail'])->name('gallery-detail');
+Route::get('/gallery-detail/{id}', [HomeController::class, 'galleryDetail'])->whereNumber('id')->name('gallery-detail');
 
 
-Auth::routes();
-Route::get('/dashboard', function(){
-    return view('admin.dashboard');
-})->name('Home');
+// Public self-registration is disabled: admin accounts are created by an administrator.
+Auth::routes(['register' => false]);
 
-Route::resource('news', NewsController::class)->middleware('auth');
-Route::resource('category', CategoryController::class)->middleware('auth');
-Route::resource('albumcategory', AlbumCategoryController::class)->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
 
-Route::get('/albums', [AlbumController::class, 'getList'])->name('albums');
+    Route::resource('news', NewsController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('albumcategory', AlbumCategoryController::class);
 
-Route::get('albums/createalbum', [AlbumController::class, 'getForm'])->name('create_album_form');
-Route::post('albums/createalbum', [AlbumController::class, 'postCreate'])->name('create_album');
-Route::get('/deletealbum/{id}', [AlbumController::class, 'getDelete'])->name('delete_album');
-Route::get('/albums/view-album/{id}', [AlbumController::class, 'getAlbum'])->name('show_album');
-Route::get('/albums/edit-album/{id}', [AlbumController::class, 'editAlbum'])->name('edit_album');
+    Route::get('/albums', [AlbumController::class, 'getList'])->name('albums');
+    Route::get('albums/createalbum', [AlbumController::class, 'getForm'])->name('create_album_form');
+    Route::post('albums/createalbum', [AlbumController::class, 'postCreate'])->name('create_album');
+    Route::delete('/deletealbum/{id}', [AlbumController::class, 'getDelete'])->whereNumber('id')->name('delete_album');
+    Route::get('/albums/view-album/{id}', [AlbumController::class, 'getAlbum'])->whereNumber('id')->name('show_album');
+    Route::get('/albums/edit-album/{id}', [AlbumController::class, 'editAlbum'])->whereNumber('id')->name('edit_album');
+    Route::post('albums/edit-album', [AlbumController::class, 'updateAlbum'])->name('update_album');
 
-Route::post('albums/edit-album', [AlbumController::class, 'updateAlbum'])->name('update_album');
-
-Route::get('/addimage/{id}', [ImageController::class, 'getForm'])->name('add_image');
-Route::post('/addimage', [ImageController::class, 'postAdd'])->name('add_image_to_album');
-Route::get('/deleteimage/{id}', [ImageController::class, 'getDelete'])->name('delete_image');
-
-
-Route::post('/moveimage', [ImageController::class, 'postMove'])->name('move_image');
-
-
-Route::get('dropzone', [DropzoneController::class, 'index']);
-
-Route::post('dropzone/upload', [DropzoneController::class, 'upload'])->name('dropzone.upload');
-
-Route::get('dropzone/fetch', [DropzoneController::class, 'fetch'])->name('dropzone.fetch');
-
-Route::get('dropzone/delete', [DropzoneController::class, 'delete'])->name('dropzone.delete');
+    Route::get('/addimage/{id}', [ImageController::class, 'getForm'])->whereNumber('id')->name('add_image');
+    Route::post('/addimage', [ImageController::class, 'postAdd'])->name('add_image_to_album');
+    Route::delete('/deleteimage/{id}', [ImageController::class, 'getDelete'])->whereNumber('id')->name('delete_image');
+    Route::post('/moveimage', [ImageController::class, 'postMove'])->name('move_image');
+});

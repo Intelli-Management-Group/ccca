@@ -2,281 +2,197 @@
 
 namespace App\Http\Controllers;
 
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 use App\Models\Album;
 use App\Models\AlbumCategory;
 use App\Models\AlbumImagesDetail;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Validator;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\View\View;
 
 class AlbumController extends Controller
 {
-    public function getList()
+    private const IMAGE_RULE = 'image|mimes:jpeg,png,jpg,gif,webp|max:5120';
+
+    public function getList(): View
     {
         $albums = Album::with('Photos')->get();
         return view('albums.index', compact('albums'));
     }
 
-    public function getAlbum($id)
+    public function getAlbum(int $id): View
     {
-        $album = Album::with('Photos')->find($id);
-
+        $album = Album::with('Photos')->findOrFail($id);
         $albums = Album::all();
-//        return View::make('album')
-//            ->with('album',$album);
         return view('albums.album', compact('album', 'albums'));
-
     }
 
-
-    public function editAlbum($id)
+    public function editAlbum(int $id): View
     {
-        $album = Album::find($id);
-        if ($album) {
-            $images = $album->Photos;
-            $categories = AlbumCategory::all();
-            return view('albums.editalbum', compact('album', 'images', 'categories'));
-        }
+        $album = Album::findOrFail($id);
+        $images = $album->Photos;
+        $categories = AlbumCategory::all();
+        return view('albums.editalbum', compact('album', 'images', 'categories'));
     }
 
-    public function getForm()
+    public function getForm(): View
     {
         $categories = AlbumCategory::all();
         return view('albums.createalbum', compact('categories'));
     }
 
-
-    public function updateAlbum(Request $request)
+    public function updateAlbum(Request $request): JsonResponse
     {
-        $element_array = array(
-            'name' => 'required',
-            'category' => 'required'
-        );
-        $validator = Validator::make($request->all(), $element_array);
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer|exists:albums,id',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'category' => 'required|array',
+            'category.*' => 'string|max:255',
+            'cover_image' => 'nullable|' . self::IMAGE_RULE,
+            'publishDate' => 'nullable|date',
+            'deleted_id' => 'nullable|string',
+            'sort_ids' => 'nullable|string',
+            'allImageFiles' => 'nullable|array',
+            'allImageFiles.*' => 'file|' . self::IMAGE_RULE,
+            'allImageData' => 'nullable|array',
+        ]);
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()]);
         }
-        $album = Album::find($request->id);
-        if ($album) {
-            $file = $request->file('cover_image');
-            if ($file) {
-                unlink(public_path('uploads') . '/albums/' . $album->cover_image);
-                $random_name = date('YmdHis');
-                $destinationPath = public_path('uploads') . '/albums/';
-                $extension = $file->getClientOriginalExtension();
-                $filename = $random_name . '_cover.' . $extension;
-                $file->move($destinationPath, $filename);
-                $album->cover_image = $filename;
-            }
-            $album->name = $request->name;
-            $album->description = $request->description;
-            $album->category = implode(',', $request->category);
-            if($request->input("publishDate")) {
-                $album->publishDate = Carbon::parse($request->input("publishDate"))->format("Y-m-d");
-            }
-            $album->save();
 
-            $deleted_ids = $request->input("deleted_id");
-            if ($deleted_ids != null) {
-                $deleted_ids_array = explode(",", $deleted_ids);
-                foreach (count($deleted_ids_array) > 0 ? $deleted_ids_array : array() as $d) {
-                    $image_file = AlbumImagesDetail::where("id", $d)->where("albumId", $album->id)->first();
-                    if ($image_file) {
-                        if ($image_file->fileName != null && file_exists(public_path("uploads/albums/" . $album->id . "/" . $image_file->fileName))) {
-                            unlink(public_path("uploads/albums/" . $album->id . "/" . $image_file->fileName));
-                        }
-                        $image_file->delete();
-                    }
-                }
-            }
-            $sort_ids = json_decode($request->input("sort_ids"), true);
-            foreach (count((array)$sort_ids) > 0 ? $sort_ids : array() as $s => $value) {
-                $al_file = AlbumImagesDetail::where("id", $s)->where("albumId", $album->id)->first();
-                if ($al_file) {
-                    $al_file->sortIndex = $value;
-                    $al_file->save();
-                }
-            }
+        $album = Album::findOrFail($request->input('id'));
 
-            $album_images = $request->file("allImageFiles");
-            $image_data = $request->input("allImageData");
-
-            if (count((array)$album_images) > 0) {
-                $imgPath = public_path('uploads') . '/albums/' . $album->id . "/";
-                if (!File::exists($imgPath)) {
-                    File::makeDirectory($imgPath);
-                }
-                foreach ($album_images as $key => $value) {
-                    $album_image = new AlbumImagesDetail();
-                    $album_image->albumId = $album->id;
-                    $image_data_array = json_decode($image_data[$key], true);
-                    $album_image->sortIndex = intval($image_data_array["sortIndex"]);
-                    $album_image->caption = $image_data_array["caption"];
-                    $album_image->credit = $image_data_array["credit"];
-                    $album_image->save();
-
-                    $album_image->fileName = date('YmdHis') . "_" . $album->id . "_" . $album_image->id . "." . $value->getClientOriginalExtension();
-                    $album_image->save();
-                    $value->move($imgPath, $album_image->fileName);
-                }
-            }
-            \Request::session()->flash('success', "Album updated successfully!");
-            return response()->json(array("list" => url("albums")));
+        if ($file = $request->file('cover_image')) {
+            $this->deleteFile(public_path('uploads/albums/' . basename((string) $album->cover_image)));
+            $album->cover_image = $this->storeUpload($file, public_path('uploads/albums'), '_cover');
         }
-    }
-
-
-    public function postCreate(Request $request)
-    {
-        $element_array = array(
-            'name' => 'required',
-            'category' => 'required',
-            'cover_image' => 'required|image'
-        );
-        $validator = Validator::make($request->all(), $element_array);
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()]);
-        }
-        $file = $request->file('cover_image');
-        $random_name = date('YmdHis');
-        $destinationPath = public_path('uploads') . '/albums/';
-        $extension = $file->getClientOriginalExtension();
-        $filename = $random_name . '_cover.' . $extension;
-        $file->move($destinationPath, $filename);
-
-        $album = new Album();
-        $album->name = $request->name;
-        $album->description = $request->description;
-        $album->category = implode(',', $request->category);
-        $album->cover_image = $filename;
-        if($request->input("publishDate")) {
-            $album->publishDate = Carbon::parse($request->input("publishDate"))->format("Y-m-d");
+        $album->name = $request->input('name');
+        $album->description = $request->input('description');
+        $album->category = implode(',', $request->input('category'));
+        if ($request->filled('publishDate')) {
+            $album->publishDate = Carbon::parse($request->input('publishDate'))->format('Y-m-d');
         }
         $album->save();
 
-        $album_images = $request->file("allImageFiles");
-        $image_data = $request->input("allImageData");
-
-        if (count((array)$album_images) > 0) {
-            $imgPath = public_path('uploads') . '/albums/' . $album->id . "/";
-            if (!File::exists($imgPath)) {
-                File::makeDirectory($imgPath);
-            }
-            foreach ($album_images as $key => $value) {
-                $album_image = new AlbumImagesDetail();
-                $album_image->albumId = $album->id;
-                $image_data_array = json_decode($image_data[$key], true);
-                $album_image->sortIndex = intval($image_data_array["sortIndex"]);
-                $album_image->caption = $image_data_array["caption"];
-                $album_image->credit = $image_data_array["credit"];
-                $album_image->save();
-
-                $album_image->fileName = date('YmdHis') . "_" . $album->id . "_" . $album_image->id . "." . $value->getClientOriginalExtension();
-                $album_image->save();
-                $value->move($imgPath, $album_image->fileName);
-            }
-        }
-        \Request::session()->flash('success', "Album created successfully!");
-        return response()->json(array("list" => url("albums")));
-    }
-
-    public function getDelete($id)
-    {
-        $album = Album::find($id);
-        if ($album) {
-            $albumImages = AlbumImagesDetail::where("albumId", $id)->get();
-            foreach (!$albumImages->isEmpty() ? $albumImages : array() as $ai) {
-                if ($ai->fileName != null && file_exists(public_path("uploads/albums/" . $album->id . "/" . $ai->fileName))) {
-                    unlink(public_path("uploads/albums/" . $album->id . "/" . $ai->fileName));
+        $deleted_ids = $request->input('deleted_id');
+        if ($deleted_ids) {
+            foreach (array_filter(array_map('intval', explode(',', $deleted_ids))) as $d) {
+                $image_file = AlbumImagesDetail::where('id', $d)->where('albumId', $album->id)->first();
+                if ($image_file) {
+                    if ($image_file->fileName) {
+                        $this->deleteFile(public_path('uploads/albums/' . $album->id . '/' . basename($image_file->fileName)));
+                    }
+                    $image_file->delete();
                 }
-                $ai->delete();
             }
-            unlink(public_path('uploads') . '/albums/' . $album->cover_image);
-            File::deleteDirectory(public_path("uploads/albums/" . $id));
-            $album->delete();
-            return redirect('/albums')->with('success', 'Album Deleted!');
+        }
+
+        $sort_ids = json_decode((string) $request->input('sort_ids'), true);
+        if (is_array($sort_ids)) {
+            foreach ($sort_ids as $id => $value) {
+                $al_file = AlbumImagesDetail::where('id', (int) $id)->where('albumId', $album->id)->first();
+                if ($al_file) {
+                    $al_file->sortIndex = (int) $value;
+                    $al_file->save();
+                }
+            }
+        }
+
+        $this->saveGalleryImages($request, $album);
+
+        $request->session()->flash('success', 'Album updated successfully!');
+        return response()->json(['list' => url('albums')]);
+    }
+
+    public function postCreate(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'category' => 'required|array',
+            'category.*' => 'string|max:255',
+            'cover_image' => 'required|' . self::IMAGE_RULE,
+            'publishDate' => 'nullable|date',
+            'allImageFiles' => 'nullable|array',
+            'allImageFiles.*' => 'file|' . self::IMAGE_RULE,
+            'allImageData' => 'nullable|array',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()]);
+        }
+
+        $album = new Album();
+        $album->name = $request->input('name');
+        $album->description = $request->input('description');
+        $album->category = implode(',', $request->input('category'));
+        $album->cover_image = $this->storeUpload($request->file('cover_image'), public_path('uploads/albums'), '_cover');
+        if ($request->filled('publishDate')) {
+            $album->publishDate = Carbon::parse($request->input('publishDate'))->format('Y-m-d');
+        }
+        $album->save();
+
+        $this->saveGalleryImages($request, $album);
+
+        $request->session()->flash('success', 'Album created successfully!');
+        return response()->json(['list' => url('albums')]);
+    }
+
+    public function getDelete(int $id): RedirectResponse
+    {
+        $album = Album::findOrFail($id);
+        $this->deleteFile(public_path('uploads/albums/' . basename((string) $album->cover_image)));
+        File::deleteDirectory(public_path('uploads/albums/' . $album->id));
+        AlbumImagesDetail::where('albumId', $album->id)->delete();
+        $album->delete();
+        return redirect('/albums')->with('success', 'Album Deleted!');
+    }
+
+    private function saveGalleryImages(Request $request, Album $album): void
+    {
+        $album_images = $request->file('allImageFiles');
+        $image_data = $request->input('allImageData', []);
+        if (empty($album_images)) {
+            return;
+        }
+
+        $imgPath = public_path('uploads/albums/' . $album->id);
+        File::ensureDirectoryExists($imgPath, 0755);
+
+        foreach ($album_images as $key => $file) {
+            $meta = json_decode((string) ($image_data[$key] ?? ''), true);
+            $meta = is_array($meta) ? $meta : [];
+
+            $album_image = new AlbumImagesDetail();
+            $album_image->albumId = $album->id;
+            $album_image->sortIndex = (int) ($meta['sortIndex'] ?? 0);
+            $album_image->caption = $meta['caption'] ?? null;
+            $album_image->credit = $meta['credit'] ?? null;
+            $album_image->save();
+
+            $album_image->fileName = date('YmdHis') . '_' . $album->id . '_' . $album_image->id . '.' . $file->guessExtension();
+            $album_image->save();
+            $file->move($imgPath, $album_image->fileName);
         }
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    /** Store an upload under a server-generated name; the extension comes from file content, not the client. */
+    private function storeUpload(UploadedFile $file, string $dir, string $suffix): string
     {
-        //
+        File::ensureDirectoryExists($dir, 0755);
+        $name = date('YmdHis') . '_' . bin2hex(random_bytes(4)) . $suffix . '.' . $file->guessExtension();
+        $file->move($dir, $name);
+        return $name;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    private function deleteFile(string $path): void
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Album $album
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Album $album)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Album $album
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Album $album)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Album $album
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Album $album)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Album $album
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Album $album)
-    {
-        //
+        if (is_file($path)) {
+            unlink($path);
+        }
     }
 }

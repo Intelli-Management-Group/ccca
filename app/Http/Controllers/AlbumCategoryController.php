@@ -55,7 +55,7 @@ class AlbumCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category'=>'required',
+            'category' => 'required|string|max:255',
         ]);
 
         $category = new AlbumCategory();
@@ -104,9 +104,9 @@ class AlbumCategoryController extends Controller
      * @param  \App\AlbumCategory  $albumCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $cat = AlbumCategory::find($id)->delete();
+        AlbumCategory::findOrFail($id)->delete();
         return response()->json(['success'=>'Category deleted successfully.']);
 
     }

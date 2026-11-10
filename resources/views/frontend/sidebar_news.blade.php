@@ -11,7 +11,7 @@
     
      @endphp
     @foreach($recent as $r)
-        <li><a href="#">{!! $r->title !!}</a></li>
+        <li><a href="#">{{ $r->title }}</a></li>
     @endforeach
 </ul>
 
