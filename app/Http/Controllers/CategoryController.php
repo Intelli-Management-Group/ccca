@@ -58,7 +58,7 @@ class CategoryController extends Controller
     {
 
         $request->validate([
-            'category'=>'required',
+            'category' => 'required|string|max:255',
         ]);
 
         $category = new Category();
@@ -120,9 +120,9 @@ class CategoryController extends Controller
      * @param  \App\Category s $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $category = Category::find($id)->delete();
+        Category::findOrFail($id)->delete();
 
 
         return response()->json(['success'=>'Category deleted successfully.']);

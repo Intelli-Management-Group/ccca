@@ -21,13 +21,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 ">
-                        <h2>{!! $gallery_name !!}</h2><hr/>
+                        <h2>{{ $gallery_name }}</h2><hr/>
                         <div class="row gallery">
                             @foreach($images as $i)
                                 <div class="col-sm-3 mb-2">
-                                    <a href="{!! asset("uploads/albums/".$i->albumId."/".$i->fileName) !!}">
-                                        <img src="{!! asset("uploads/albums/".$i->albumId."/".$i->fileName) !!}" class="img-thumbnail"
-                                             alt="{!! $i->caption !!}" title="{!! $i->credit !!}">
+                                    <a href="{{ asset("uploads/albums/".$i->albumId."/".$i->fileName) }}">
+                                        <img src="{{ asset("uploads/albums/".$i->albumId."/".$i->fileName) }}" class="img-thumbnail"
+                                             alt="{{ $i->caption }}" title="{{ $i->credit }}">
                                     </a>
                                 </div>
                             @endforeach

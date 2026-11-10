@@ -49,7 +49,7 @@
     var files_Data = [], deleted_ids = [], sort_ids = {};
     var cover_image = "";
     $(document).ready(function () {
-        var existing_images = '{!! isset($images) ? $images : "" !!}';
+        var existing_images = {!! json_encode(isset($images) ? $images->toJson() : "", JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!};
         $("#cover_image,#imgupload").change(function () {
             cover_image = this.files[0];
         });

@@ -23,7 +23,7 @@
                                             </div>
                                         </div>
                                         <div class="news-detail-body">
-                                            {!! nl2br($news->description) !!}
+                                            {!! nl2br(e($news->description)) !!}
                                         </div>
                                     </div>
                                 </div>

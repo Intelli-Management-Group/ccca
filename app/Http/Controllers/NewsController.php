@@ -40,15 +40,17 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'description'=>'required',
-            'category'=>'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category' => 'required|array',
+            'category.*' => 'string|max:255',
+            'news_date' => 'nullable|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
 
         if ($files = $request->file('image')) {
-            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $profileImage = date('YmdHis') . '_' . bin2hex(random_bytes(4)) . '.' . $files->guessExtension();
             $files->move(public_path('uploads'), $profileImage);
         }
 
@@ -99,13 +101,15 @@ class NewsController extends Controller
     public function update(Request $request, News $news)
     {
         $request->validate([
-            'title'=>'required',
-            'description'=>'required',
-            'category'=>'required',
-
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category' => 'required|array',
+            'category.*' => 'string|max:255',
+            'news_date' => 'nullable|date',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
         if ($files = $request->file('image')) {
-            $profileImage = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $profileImage = date('YmdHis') . '_' . bin2hex(random_bytes(4)) . '.' . $files->guessExtension();
             $files->move(public_path('uploads'), $profileImage);
             $news->banner = $profileImage;
         }
@@ -129,4 +133,3 @@ class NewsController extends Controller
         return redirect('/news')->with('success','News deleted successfully!');
     }
 }
-?>

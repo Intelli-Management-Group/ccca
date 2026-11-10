@@ -46,10 +46,7 @@
                             <button type="button" class="btn btn-primary btn-large" data-toggle="modal"
                                     data-target="#imageUploadModal">Add New Image to Album
                             </button>
-                            <a href="{{URL::route('delete_album',array('id'=>$album->id))}}"
-                               onclick="return confirm('Are yousure?')">
-                                <button type="button" class="btn btn-danger btn-large">Delete Album</button>
-                            </a>
+                            <button type="submit" form="delete-album-form" class="btn btn-danger btn-large">Delete Album</button>
                         </div>
                     </div>
                 </div>
@@ -70,5 +67,6 @@
             </div>
         </div>
     </form>
+    <form id="delete-album-form" method="POST" action="{{ route('delete_album', ['id' => $album->id]) }}" style="display:none" onsubmit="return confirm('Are you sure?')">@csrf @method('DELETE')</form>
     @include("albums/imageModal",["images" => $images])
 @endsection

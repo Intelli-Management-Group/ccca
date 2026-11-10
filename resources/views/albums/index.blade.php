@@ -13,11 +13,11 @@
         <div class="col-12">
             @if(session()->has('success'))
                 <div class="alert alert-success" id="successMessage">
-                    {!! session('success') !!}
+                    {{ session('success') }}
                 </div>
             @endif @if(session()->has('error'))
                 <div class="alert alert-danger" id="errorMessage">
-                    {!! session('error') !!}
+                    {{ session('error') }}
                 </div>
             @endif
             <a href="{{URL::route('create_album_form')}}" class="btn btn-primary mb-2">Create New Album</a>
