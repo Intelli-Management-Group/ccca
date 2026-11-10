@@ -59,3 +59,7 @@ Stack trace:
 #10 /home/intellidt2014/public_html/ccca/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(109): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
 #11 /home/intellidt2014/public_html/ccca/public/index.php(56): Illuminate\Foundation\Http\Kernel->handle()
 #12 {main} in /home/intellidt2014/public_html/ccca/vendor/laravel/framework/src/Illuminate/Support/Collection.php on line 11
+[22-Apr-2025 08:01:14 UTC] PHP Warning:  require(/home/intellidt2014/public_html/ccca/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/intellidt2014/public_html/ccca/public/index.php on line 13
+[22-Apr-2025 08:01:14 UTC] PHP Fatal error:  require(): Failed opening required '/home/intellidt2014/public_html/ccca/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/intellidt2014/public_html/ccca/public/index.php on line 13
+[22-Apr-2025 08:01:15 UTC] PHP Warning:  require(/home/intellidt2014/public_html/ccca/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/intellidt2014/public_html/ccca/public/index.php on line 13
+[22-Apr-2025 08:01:15 UTC] PHP Fatal error:  require(): Failed opening required '/home/intellidt2014/public_html/ccca/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/intellidt2014/public_html/ccca/public/index.php on line 13

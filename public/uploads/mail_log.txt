@@ -1,0 +1,287 @@
+2026-08-12 14:53:36 📨 Driver: SMTP | Total: 1
+2026-08-12 14:53:37 ✅ Koneksi SMTP berhasil.
+2026-08-12 14:53:38 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 14:53:38 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 14:54:35 📨 Driver: SMTP | Total: 1
+2026-08-12 14:54:35 ✅ Koneksi SMTP berhasil.
+2026-08-12 14:54:36 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 14:54:37 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 14:55:15 📨 Driver: SMTP | Total: 1
+2026-08-12 14:55:15 ✅ Koneksi SMTP berhasil.
+2026-08-12 14:55:16 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 14:55:17 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 14:56:10 📨 Driver: SMTP | Total: 1
+2026-08-12 14:56:10 ✅ Koneksi SMTP berhasil.
+2026-08-12 14:56:11 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 14:56:11 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 14:57:10 📨 Driver: SMTP | Total: 1
+2026-08-12 14:57:13 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 14:57:27 📨 Driver: SMTP | Total: 1
+2026-08-12 14:57:27 ✅ Koneksi SMTP berhasil.
+2026-08-12 14:57:38 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 14:57:38 
+✨ Selesai! Terkirim: 0, Gagal: 1
+2026-08-12 14:59:22 📨 Driver: SMTP | Total: 1
+2026-08-12 14:59:22 ✅ Koneksi SMTP berhasil.
+2026-08-12 14:59:23 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 14:59:24 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 15:05:11 📨 Driver: SMTP | Total: 1
+2026-08-12 15:05:12 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:05:19 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:05:19 
+✨ Selesai! Terkirim: 0, Gagal: 1
+2026-08-12 15:06:55 📨 Driver: SMTP | Total: 1
+2026-08-12 15:06:55 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:07:02 [1] ❌ endrikarina53@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:07:03 
+✨ Selesai! Terkirim: 0, Gagal: 1
+2026-08-12 15:07:51 📨 Driver: SMTP | Total: 1
+2026-08-12 15:07:51 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:07:59 [1] ✅ endrikarina53@gmail.com
+2026-08-12 15:07:59 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 15:09:13 📨 Driver: SMTP | Total: 1
+2026-08-12 15:09:13 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:09:14 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:09:14 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 15:11:46 📨 Driver: SMTP | Total: 2
+2026-08-12 15:11:46 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:11:52 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:11:59 [2] ❌ endrikarina53@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:12:00 
+✨ Selesai! Terkirim: 0, Gagal: 2
+2026-08-12 15:13:57 📨 Driver: SMTP | Total: 2
+2026-08-12 15:13:57 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:14:14 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:14:20 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:14:21 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:16:48 📨 Driver: SMTP | Total: 2
+2026-08-12 15:16:50 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 15:16:57 📨 Driver: SMTP | Total: 2
+2026-08-12 15:17:01 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:17:08 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:17:16 [2] ❌ endrikarina53@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:17:16 
+✨ Selesai! Terkirim: 0, Gagal: 2
+2026-08-12 15:18:24 📨 Driver: SMTP | Total: 2
+2026-08-12 15:18:24 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:18:30 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:18:38 [2] ❌ endrikarina53@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 15:18:38 
+✨ Selesai! Terkirim: 0, Gagal: 2
+2026-08-12 15:19:34 📨 Driver: SMTP | Total: 2
+2026-08-12 15:19:34 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:19:35 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:19:37 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:19:37 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:21:50 📨 Driver: SMTP | Total: 2
+2026-08-12 15:21:51 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:21:52 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:21:54 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:21:54 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:23:52 📨 Driver: SMTP | Total: 2
+2026-08-12 15:23:52 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:23:53 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:23:55 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:23:55 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:25:48 📨 Driver: SMTP | Total: 2
+2026-08-12 15:25:48 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:25:59 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:26:10 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:26:10 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:35:26 📨 Driver: SMTP | Total: 2
+2026-08-12 15:35:26 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:35:37 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:35:48 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:35:49 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:37:26 📨 Driver: SMTP | Total: 2
+2026-08-12 15:37:28 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 15:37:35 📨 Driver: SMTP | Total: 2
+2026-08-12 15:37:39 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:37:49 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:37:58 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:37:59 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:39:35 📨 Driver: SMTP | Total: 2
+2026-08-12 15:39:37 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 15:39:43 📨 Driver: SMTP | Total: 2
+2026-08-12 15:39:47 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:39:57 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:40:08 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:40:09 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:42:06 📨 Driver: SMTP | Total: 2
+2026-08-12 15:42:08 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 15:42:16 📨 Driver: SMTP | Total: 2
+2026-08-12 15:42:20 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:42:30 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:42:41 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:42:42 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:44:10 📨 Driver: SMTP | Total: 2
+2026-08-12 15:44:10 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:44:19 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:44:29 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:44:30 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:45:35 📨 Driver: SMTP | Total: 2
+2026-08-12 15:45:35 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:45:45 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:45:57 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:45:57 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 15:49:18 📨 Driver: SMTP | Total: 3
+2026-08-12 15:49:18 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:49:29 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:49:39 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:49:50 [3] ✅ tempattampung@yahoo.com
+2026-08-12 15:49:50 
+✨ Selesai! Terkirim: 3, Gagal: 0
+2026-08-12 15:57:22 📨 Driver: SMTP | Total: 3
+2026-08-12 15:57:22 ✅ Koneksi SMTP berhasil.
+2026-08-12 15:57:33 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 15:57:43 [2] ✅ endrikarina53@gmail.com
+2026-08-12 15:57:54 [3] ✅ tempattampung@yahoo.com
+2026-08-12 15:57:55 
+✨ Selesai! Terkirim: 3, Gagal: 0
+2026-08-12 16:01:02 📨 Driver: SMTP | Total: 3
+2026-08-12 16:01:02 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:01:12 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:01:23 [2] ✅ endrikarina53@gmail.com
+2026-08-12 16:01:34 [3] ✅ tempattampung@yahoo.com
+2026-08-12 16:01:34 
+✨ Selesai! Terkirim: 3, Gagal: 0
+2026-08-12 16:01:42 📨 Driver: SMTP | Total: 3
+2026-08-12 16:01:42 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:01:53 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:02:04 [2] ✅ endrikarina53@gmail.com
+2026-08-12 16:02:15 [3] ✅ tempattampung@yahoo.com
+2026-08-12 16:02:15 
+✨ Selesai! Terkirim: 3, Gagal: 0
+2026-08-12 16:05:03 📨 Driver: SMTP | Total: 3
+2026-08-12 16:05:03 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:05:15 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:05:25 [2] ✅ endrikarina53@gmail.com
+2026-08-12 16:05:36 [3] ✅ blackspace231@gmail.com
+2026-08-12 16:05:37 
+✨ Selesai! Terkirim: 3, Gagal: 0
+2026-08-12 16:10:02 📨 Driver: SMTP | Total: 3
+2026-08-12 16:10:02 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:10:13 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:10:23 [2] ✅ endrikarina53@gmail.com
+2026-08-12 16:10:33 [3] ✅ blackspace231@gmail.com
+2026-08-12 16:10:33 
+✨ Selesai! Terkirim: 3, Gagal: 0
+2026-08-12 16:16:25 📨 Driver: SMTP | Total: 1
+2026-08-12 16:16:25 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:16:35 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:16:36 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 16:28:21 📨 Driver: SMTP | Total: 1
+2026-08-12 16:28:21 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:28:32 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:28:32 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 16:31:40 📨 Driver: SMTP | Total: 1
+2026-08-12 16:31:40 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:31:51 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:31:51 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 16:33:15 📨 Driver: SMTP | Total: 1
+2026-08-12 16:33:17 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 16:33:22 📨 Driver: SMTP | Total: 1
+2026-08-12 16:33:27 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:33:37 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 16:33:38 
+✨ Selesai! Terkirim: 0, Gagal: 1
+2026-08-12 16:34:50 📨 Driver: SMTP | Total: 1
+2026-08-12 16:34:52 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 16:34:59 📨 Driver: SMTP | Total: 1
+2026-08-12 16:35:03 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:35:13 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 16:35:14 
+✨ Selesai! Terkirim: 0, Gagal: 1
+2026-08-12 16:35:30 📨 Driver: SMTP | Total: 1
+2026-08-12 16:35:30 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:35:40 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 16:35:41 
+✨ Selesai! Terkirim: 0, Gagal: 1
+2026-08-12 16:36:03 📨 Driver: SMTP | Total: 1
+2026-08-12 16:36:03 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:36:13 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:36:13 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 16:39:30 📨 Driver: SMTP | Total: 1
+2026-08-12 16:39:30 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:39:40 [1] ❌ budaklzcrew@gmail.com: DATA gagal dikirim: 550 This message was classified as SPAM and may not be delivered
+
+2026-08-12 16:39:40 
+✨ Selesai! Terkirim: 0, Gagal: 1
+2026-08-12 16:40:12 📨 Driver: SMTP | Total: 1
+2026-08-12 16:40:12 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:40:22 [1] ✅ budaklzcrew@gmail.com
+2026-08-12 16:40:22 
+✨ Selesai! Terkirim: 1, Gagal: 0
+2026-08-12 16:41:05 📨 Driver: SMTP | Total: 2
+2026-08-12 16:41:08 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 16:41:18 📨 Driver: SMTP | Total: 2
+2026-08-12 16:41:22 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:41:32 [1] ✅ endrikarina53@gmail.com
+2026-08-12 16:41:43 [2] ✅ blackspace231@gmail.com
+2026-08-12 16:41:44 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 16:42:21 📨 Driver: SMTP | Total: 2
+2026-08-12 16:42:23 ❌ Koneksi SMTP gagal: Pass ditolak: 535 Incorrect authentication data
+
+2026-08-12 16:42:28 📨 Driver: SMTP | Total: 2
+2026-08-12 16:42:32 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:42:43 [1] ✅ endrikarina53@gmail.com
+2026-08-12 16:42:53 [2] ✅ blackspace231@gmail.com
+2026-08-12 16:42:54 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 16:43:12 📨 Driver: SMTP | Total: 2
+2026-08-12 16:43:12 ✅ Koneksi SMTP berhasil.
+2026-08-12 16:43:22 [1] ✅ endrikarina53@gmail.com
+2026-08-12 16:43:33 [2] ✅ blackspace231@gmail.com
+2026-08-12 16:43:34 
+✨ Selesai! Terkirim: 2, Gagal: 0
+2026-08-12 16:46:44 📨 Driver: SMTP | Total: 2
+2026-08-12 16:47:14 ❌ Koneksi SMTP gagal: Gagal koneksi: Connection timed out (110)
+2026-08-13 04:32:26 📨 Driver: SMTP | Total: 1
+2026-08-13 04:32:57 ❌ Koneksi SMTP gagal: Gagal koneksi: Connection timed out (110)
+2026-08-13 16:11:59 📨 Driver: SMTP | Total: 1
+2026-08-13 16:12:29 ❌ Koneksi SMTP gagal: Gagal koneksi: Connection timed out (110)
+2026-08-13 16:33:33 📨 Driver: SMTP | Total: 1
+2026-08-13 16:34:03 ❌ Koneksi SMTP gagal: Gagal koneksi: Connection timed out (110)
